@@ -117,7 +117,7 @@ public class OrderController {
     }
 
     @GetMapping("/myorders.html")
-    public String payAliSuccess(){
+    public String payAliSuccess() {
 
         return "my-orders";
     }

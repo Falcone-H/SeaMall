@@ -16,7 +16,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>小米-支付</title>
     <link th:href="@{/mall/styles/pay.css}" rel="stylesheet" media="screen">
-    <script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.11.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -75,7 +75,8 @@
 </div>
 <script type="text/javascript">
     function payOrderSuccess() {
-        var orderNo = $("#orderNoValue").val();
+        var orderNo = document.getElementById("orderNoValue").getAttribute("value");
+        //var orderNo = $("#orderNoValue").val();
         $.ajax({
             type: 'GET',
             url: '/paySuccess?payType=1&orderNo=' + orderNo,

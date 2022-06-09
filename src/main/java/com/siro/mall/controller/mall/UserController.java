@@ -48,13 +48,13 @@ public class UserController {
         if (StringUtils.isEmpty(password)) {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_PASSWORD_NULL.getResult());
         }
-        if (StringUtils.isEmpty(verifyCode)) {
-            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_NULL.getResult());
-        }
-        String kaptchaCode = httpSession.getAttribute(Constants.MALL_VERIFY_CODE_KEY) + "";
-        if (StringUtils.isEmpty(kaptchaCode) || !verifyCode.toLowerCase().equals(kaptchaCode)) {
-            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_ERROR.getResult());
-        }
+//        if (StringUtils.isEmpty(verifyCode)) {
+//            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_NULL.getResult());
+//        }
+//        String kaptchaCode = httpSession.getAttribute(Constants.MALL_VERIFY_CODE_KEY) + "";
+//        if (StringUtils.isEmpty(kaptchaCode) || !verifyCode.toLowerCase().equals(kaptchaCode)) {
+//            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_ERROR.getResult());
+//        }
         //todo 清verifyCode
         String registerResult = userService.register(loginName, password);
         //注册成功
@@ -84,13 +84,13 @@ public class UserController {
         if (StringUtils.isEmpty(password)) {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_PASSWORD_NULL.getResult());
         }
-        if (StringUtils.isEmpty(verifyCode)) {
-            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_NULL.getResult());
-        }
-        String kaptchaCode = httpSession.getAttribute(Constants.MALL_VERIFY_CODE_KEY) + "";
-        if (StringUtils.isEmpty(kaptchaCode) || !verifyCode.toLowerCase().equals(kaptchaCode)) {
-            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_ERROR.getResult());
-        }
+//        if (StringUtils.isEmpty(verifyCode)) {
+//            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_NULL.getResult());
+//        }
+//        String kaptchaCode = httpSession.getAttribute(Constants.MALL_VERIFY_CODE_KEY) + "";
+//        if (StringUtils.isEmpty(kaptchaCode) || !verifyCode.toLowerCase().equals(kaptchaCode)) {
+//            return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_VERIFY_CODE_ERROR.getResult());
+//        }
         //todo 清verifyCode
         String loginResult = userService.login(loginName, MD5Util.MD5Encode(password, "UTF-8"), httpSession);
         System.out.println("loginResult = " + loginResult);
@@ -120,7 +120,7 @@ public class UserController {
     @PostMapping("/personal/updateInfo")
     @ResponseBody
     public Result updateInfo(@RequestBody User mallUser, HttpSession httpSession) {
-        UserVO mallUserTemp = userService.updateUserInfo(mallUser,httpSession);
+        UserVO mallUserTemp = userService.updateUserInfo(mallUser, httpSession);
         if (mallUserTemp == null) {
             Result result = ResultGenerator.genFailResult("修改失败");
             return result;
